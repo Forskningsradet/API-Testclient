@@ -43,7 +43,7 @@ private fun exampleRequest() {
         val entity = HttpEntity("parameters", headers)
         val response = restTemplate.exchange(
             requestUrl, HttpMethod.GET, entity,
-            String::class.java
+            ByteArray::class.java
         )
         logger.info("Result - status (" + response.statusCode + ") has body: " + response.hasBody())
         //logger.info(response.body)
