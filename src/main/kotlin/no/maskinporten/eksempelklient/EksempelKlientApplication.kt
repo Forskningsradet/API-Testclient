@@ -9,9 +9,11 @@ import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpMethod
 import org.springframework.http.MediaType
+import org.springframework.http.converter.StringHttpMessageConverter
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
 import java.io.File
+import java.nio.charset.StandardCharsets
 import kotlin.system.exitProcess
 
 @SpringBootApplication
@@ -49,7 +51,7 @@ private fun exampleRequest() {
         )
         logger.info("Result - status (" + response.statusCode + ") has body: " + response.hasBody())
         //logger.info(response.body)
-        //response.body?.let { File("output.json").writeText(it) } //TODO: Change to desired filename
+        response.body.toString().let { File("output.json").writeText(it) } //TODO: Change to desired filename
     } catch (eek: Exception) {
         logger.error("** Exception: " + eek.message)
     }
