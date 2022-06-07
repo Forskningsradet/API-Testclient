@@ -38,6 +38,8 @@ private fun createHttpHeaders(): HttpHeaders {
 private fun exampleRequest() {
     val requestUrl = "http://localhost:8080" //TODO: Change to desired API-endpoint
     val restTemplate = RestTemplate()
+    restTemplate.messageConverters.add(0, StringHttpMessageConverter(StandardCharsets.UTF_8))
+
     try {
         val headers: HttpHeaders = createHttpHeaders()
         val entity = HttpEntity("parameters", headers)
